@@ -8,12 +8,14 @@ var cursors;
 var points = 0;
 var jumpButton;
 var jumpTime = 0;
+var music;
 
 function preload() {
     console.log("preloading...")
     game.load.image('player','assets/dick.jpg')
     game.load.image('hat','assets/mexican.png')
     game.load.image('platform','assets/platform.png')
+    game.load.audio('music', 'assets/donald.mp3')
 }
 
 function create() { 
@@ -24,6 +26,10 @@ function create() {
     game.physics.enable(player,Phaser.Physics.ARCADE);
     player.body.bounce.y = 0.10;
     player.body.collideWorldBounds = true;
+    music = game.add.audio('music');
+    music.play();
+    music.loop = ('music',true);
+
 
 
     platforms = this.add.physicsGroup();
