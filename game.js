@@ -17,19 +17,23 @@ function preload() {
 }
 
 function create() { 
-    game.stage.backgroundColor = '#72C257';
+    game.stage.backgroundColor = '#E60000';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 250;
     player = game.add.sprite(0,0,'player');
     game.physics.enable(player,Phaser.Physics.ARCADE);
     player.body.bounce.y = 0.10;
     player.body.collideWorldBounds = true;
+
+
     platforms = this.add.physicsGroup();
     platforms.create(50, 200, 'platform');
     platforms.create(200, 200, 'platform');
     platforms.create(300, 250, 'platform');
     platforms.create(400, 250, 'platform');
     platforms.create(200, 400, 'platform');
+    platforms.create(400, 500, 'platform');
+
     platforms.setAll('body.allowGravity', false);
     platforms.setAll('body.immovable', true);
     hats = this.add.physicsGroup();
@@ -37,6 +41,7 @@ function create() {
     hats.create(315, 150, 'hat');
     hats.create(410, 150, 'hat');
     hats.create(205, 350, 'hat');
+    hats.create(500, 250, 'hat');
 
     score = game.add.text(0, 0, _pointsText());
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -70,9 +75,9 @@ function incrementScore(p, s) {
     s.kill();
     points += 1;
 }
-if (cursors.up.isDown && (player.body.touching.down || player.body.onFloor()) && game.time.now > jumpTime) {
+if (cursors.up.isDown) {
         player.body.velocity.y = -170;
-        jumpTime = game.time.now + 750;
+        
     }
 
 
