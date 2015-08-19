@@ -71,6 +71,7 @@ function update() {
     }
     if (cursors.up.isDown &amp;&amp; this.player.body.touching.down) {
         player.body.velocity.y = -170;
+    }
         
 }
 
@@ -79,6 +80,6 @@ function incrementScore(p, s) {
     points += 1;
 }
 
-    }
+    
 
 
