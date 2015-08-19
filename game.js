@@ -69,8 +69,9 @@ function update() {
     if (cursors.right.isDown) {
         player.body.velocity.x = 120;
     }
-    if (cursors.up.isDown &amp;&amp; this.player.body.touching.down) {
+    if (cursors.up.isDown && (player.body.touching.down || player.body.onFloor()) && game.time.now > jumpTime) {
         player.body.velocity.y = -170;
+        jumpTime = game.time.now + 750;
     }
         
 }
