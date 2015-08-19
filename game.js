@@ -18,7 +18,7 @@ function create() {
     game.stage.backgroundColor = '#72C257';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 250;
-    game.add.sprite(0,0,'player');
+    player = game.add.sprite(0,0,'player');
     game.physics.enable(player,Phaser.Physics.ARCADE);
     player.body.bounce.y = 0.10;
     player.body.collideWorldBounds = true;
@@ -47,7 +47,6 @@ function _pointsText() {
 
 function update() {
     game.backgroundColor = '#ff0000';
-    console.log("updating...")
      game.physics.arcade.collide(player, platforms);
      game.physics.arcade.overlap(player, hats, incrementScore);
 
