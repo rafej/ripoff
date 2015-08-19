@@ -41,13 +41,14 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
 }
 function _pointsText() {
-    return "you have deported" + points + " mexican(s)";
+    return "you have deported " + points + " mexican(s)";
 }
 
 
 function update() {
     game.backgroundColor = '#ff0000';
      game.physics.arcade.collide(player, platforms);
+     game.physics.arcade.collide(hats, platforms);
      game.physics.arcade.overlap(player, hats, incrementScore);
 
     player.body.velocity.x = 0;
@@ -66,4 +67,9 @@ function incrementScore(p, s) {
     s.kill();
     points += 1;
 }
+if (cursors.up.isDown && (player.body.touching.down || player.body.onFloor()) && game.time.now > jumpTime) {
+        player.body.velocity.y = -170;
+        jumpTime = game.time.now + 750;
+    }
+    
 
