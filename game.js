@@ -6,6 +6,8 @@ var score;
 var death;
 var cursors;
 var points = 0;
+var jumpButton;
+var jumpTime = 0;
 
 function preload() {
     console.log("preloading...")
@@ -14,7 +16,7 @@ function preload() {
     game.load.image('platform','assets/platform.png')
 }
 
-function create() {
+function create() { 
     game.stage.backgroundColor = '#72C257';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 250;
@@ -37,11 +39,12 @@ function create() {
     hats.create(205, 350, 'hat');
 
     score = game.add.text(0, 0, _pointsText());
+    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     cursors = game.input.keyboard.createCursorKeys();
 }
 function _pointsText() {
-    return "you have deported " + points + " mexican(s)";
+    return "You have deported " + points + " mexican(s).";
 }
 
 
@@ -71,5 +74,5 @@ if (cursors.up.isDown && (player.body.touching.down || player.body.onFloor()) &&
         player.body.velocity.y = -170;
         jumpTime = game.time.now + 750;
     }
-    
+
 
